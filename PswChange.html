@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <META http-equiv="content-type" content="text/html; charset=iso-8859-9"/>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet"
+href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+ <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<script > 
+          $(function () {
+      $("#bOnayla").click(function(){
+        var eskisifre = $("#eskisifre").val();
+        var yenisifre = $("#yenisifre").val();
+        var yenisifretekrar = $("#yenisifretekrar").val();
+        console.log(eskisifre);
+        $.post("./sifredegistirphp.php", {
+          eskisifre:eskisifre,
+          yenisifre:yenisifre,
+          yenisifretekrar:yenisifretekrar   
+        }, function(donenVeri){
+          alert(donenVeri)
+        });
+      })
+
+      
+    })
+
+ </script>
+ </head>
+ <body>
+<?php
+ob_start();
+session_start();
+
+   ?>
+
+
+<form class="form-horizontal">
+<fieldset>
+
+<!-- Form Adı -->
+<legend>Şifre Değiştir</legend>
+
+<!-- Şifre Girişi-->
+<div class="form-group">
+  <label class="col-md-4 control-label" >Eski Şifre </label>
+  <div class="col-md-4">
+    <input id="eskisifre"  type="password" placeholder="Eski şifre" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Yeni Şifre Girişi-->
+<div class="form-group">
+  <label class="col-md-4 control-label" >Yeni Şifre</label>
+  <div class="col-md-4">
+    <input id="yenisifre" name="yenisifre" type="password" placeholder="Yeni Şifre" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Yeni Şifre Tekrar-->
+<div class="form-group">
+  <label class="col-md-4 control-label" >Yeni Şifre Tekrar</label>
+  <div class="col-md-4">
+    <input id="yenisifretekrar" name="yenisifretekrar" type="password" placeholder="Yeni Şifre Tekrar" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+
+</fieldset>
+</form>
+<!-- Button (Double) -->
+
+  <label class="col-md-4 control-label" ></label>
+  <div class="col-md-8">
+    <button id="bIptal" name="İptal" class="btn btn-danger">İptal</button>
+    <button id="bOnayla"  class="btn  btn-primary">Onayla</button>
+  </div>
+
+
+
+</body>
+</html>
+  

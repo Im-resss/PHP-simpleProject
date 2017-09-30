@@ -1,0 +1,133 @@
+﻿<html lang="en">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet"
+ href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+ <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+ <script>
+ $(function () {
+ 			$("#kayitol").click(function(){
+ 				var adi =$("#adi").val();
+				var soyadi = $("#soyadi").val();
+				var kadi = $("#kadi").val();
+ 				var sifre = $("#sifre").val();
+ 				var eposta = $("#eposta").val();
+				var dtarihi = $("#dtarihi").val();
+
+ 				$.post("kayit.php", {
+ 					adi:adi,
+					soyadi:soyadi,
+					kadi:kadi,
+ 					sifre:sifre,
+ 					eposta:eposta,
+					dtarihi:dtarihi
+ 				}, function(donenVeri){
+ 					if(donenVeri=="Kayit islemi basarili")
+ 						window.location.href="./default.php";
+ 					else
+ 						$("#sonuc").html("hata var")
+ 				});
+ 			})
+ 			// body...
+ 		})
+
+
+ </script>
+</head>
+<body>
+
+<?php 
+ob_start();
+session_start();
+if($_SESSION)
+	header("Location:anasayfahtml.php");
+else
+{
+?>
+
+ <div class="container">
+
+<form class="form-horizontal">
+
+
+<!-- Form İsmi -->
+<b><legend>Kayıt Ol</legend></b>
+
+<!-- Text Girişi-->
+<div class="form-group">
+  <label class="col-md-4 control-label" >Adi</label>  
+  <div class="col-md-2">
+  <input id="adi"  type="text" placeholder="Adi" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Text Girişi-->
+<div class="form-group">
+  <label class="col-md-4 control-label" >Soyadi</label>  
+  <div class="col-md-2">
+  <input id="soyadi" type="text" placeholder="Soyadi" class="form-control input-md" >
+    
+  </div>
+</div>
+
+
+<!-- Text Girişi-->
+<div class="form-group">
+  <label class="col-md-4 control-label" >Kullanıcı Adı</label>  
+  <div class="col-md-2">
+  <input id="kadi"  type="text" placeholder="Kullanıcı Adı" class="form-control input-md" >
+    
+  </div>
+</div>
+
+<!-- Şifre Girişi-->
+<div class="form-group">
+  <label class="col-md-4 control-label" >Şifre</label>
+  <div class="col-md-2">
+    <input id="sifre"  type="password" placeholder="sifre" class="form-control input-md" >
+    
+  </div>
+</div>
+
+
+<!-- Text Girişi-->
+<div class="form-group">
+  <label class="col-md-4 control-label" >Email</label>  
+  <div class="col-md-2">
+  <input id="eposta"  type="text" placeholder="email" class="form-control input-md" >
+    
+  </div>
+</div>
+
+<!-- Text Girişi-->
+<div class="form-group">
+  <label class="col-md-4 control-label" >Doğum Tarihi</label>  
+  <div class="col-md-2">
+  <input id="dtarihi"  type="date"  class="form-control input-md" >
+    
+  </div>
+</div>
+
+<!-- Buton -->
+
+
+
+</form>
+
+  <label class="col-md-4 control-label" ></label>
+  <div class="col-md-4">
+    <button id="kayitol"  class="btn btn-primary">Kayıt Ol</button>
+  </div>
+
+
+
+
+</div>
+<p id="sonuc"> </p>
+<?php } ?>
+</body>
+
+<html>
